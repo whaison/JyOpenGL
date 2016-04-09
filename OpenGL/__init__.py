@@ -171,6 +171,20 @@ import occurs the flags should no longer be changed.
         
         Default: False
 """
+
+# JyOpenGL-adjustment:
+# - Usually Jython does not have lib-dynload on its path, so ensure it here
+import sys
+lib_dynload = '/usr/lib/python2.7/lib-dynload'
+if not lib_dynload in sys.path:
+	sys.path.append(lib_dynload)
+# - first JyNI-driven import performs some monkeypatching on Jython which is
+#   also crucial for PyOpenGL Python code. To leverage this we do a
+#   ctypes import here, since ctypes will be imported sooner or later anyway.
+import ctypes
+# end JyOpenGL-adjustment
+
+
 from OpenGL.version import __version__
 import os
 def environ_key( name, default ):

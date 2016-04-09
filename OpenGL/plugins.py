@@ -51,7 +51,10 @@ class PlatformPlugin( Plugin ):
         for possible in key:
             # prefer sys.platform, *then* os.name
             for plugin in cls.registry:
-                if plugin.name == possible:
+            # JyOpenGL-adjustment: switch order of __eq__-call
+            # This is needed to let JyNI's hack for platform-check work.
+                #if plugin.name == possible:
+                if possible == plugin.name:
                     return plugin
         raise KeyError( """No platform plugin registered for %s"""%(key,))
 
