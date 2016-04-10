@@ -1,3 +1,31 @@
+JyOpenGL
+========
+
+The JyOpenGL project is a fork of PyOpenGL containing adjustments that allow it to
+run on Jython. Note that JyOpenGL is not a port, since the adjustments are so
+minimal that - as of this writing - they don't touch CPython compatibility.
+So JyOpenGL is workable on Jython and CPython at the same time. However it is not
+explicitly tested on CPython.
+Still JyOpenGL was created to be a separate project, because we will add additional
+Jython- and Java-intergration features, an AWT-based rendering frontend and
+Jython-style deployment structure, e.g. a build-script to create a Jython-compliant
+jar-file containing a precompiled JyOpenGL library.
+
+To use JyOpenGL on Jython, a sufficiently complete ctypes implementation for Jython is
+required. As of this writing Jython's builtin JFFI-based ctypes implementation is
+*not* sufficient for this purpose.
+
+Currently the only known workable way is to use JyNI (www.jyni.org) with native ctypes.
+While JyNI also supports other posix platforms, the described setup was only tested
+on Linux (LMDE2, 64 bit) yet.
+Detailed setup instructions for this configuration will be appended to this section
+in near future.
+
+
+Find the original PyOpenGL-readme below:
+----------------------------------------
+
+
 PyOpenGL and PyOpenGL_accelerate
 =================================
 
