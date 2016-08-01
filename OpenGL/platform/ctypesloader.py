@@ -60,7 +60,11 @@ def _loadLibraryPosix(dllType, name, mode):
         filenames_to_try.append(base_name)
 
     # If a .so is missing, let's try libs with so version (e.g libGLU.so.9, libGLU.so.8 and so on)
-    if sys.platform.startswith('linux'):
+
+    # JyNI currently uses a hack to fake '==' into accepting other values than 'java[version]',
+    # which is the value of sys.platform in Jython. This hack only works for '==' not for
+    # 'startswith', so we adjust this here:
+    if sys.platform == 'linux2' or sys.platform == 'linux' or sys.platform.startswith('linux'):
         filenames_to_try.extend(list(reversed([
             base_name + '.%i' % i for i in range(0, 10)
         ])))

@@ -1,12 +1,5 @@
 """Test simple functions (i.e. no pointers involved)"""
 from __future__ import print_function
-
-import sys
-#sys.path.append('/data/workspace/linux/Python-2.7.11/build/lib.linux-x86_64-2.7')
-sys.path.insert(0, '/data/workspace/linux/JyOpenGL/JyOpenGL/build/JyOpenGL.jar')
-#sys.path.insert(0, '/data/workspace/linux/JyOpenGL')
-#sys.path.append('/usr/lib/python2.7/lib-dynload')
-
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
