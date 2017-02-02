@@ -1,4 +1,64 @@
 JyOpenGL
+
+JyOpenGLプロジェクトは、Jython上で動作するように調整されたPyOpenGLのフォークです。 JyOpenGLはポートではないことに注意してください。この調整は、この執筆時点のように、CPythonとの互換性には触れていないからです。したがって、JyOpenGLはJythonとCPythonで同時に実行可能です。しかし、CPythonで明示的にテストされていません。 JyOpenGLは別のプロジェクトとして作成されました.JythonとJavaの統合、AWTベースのレンダリングフロントエンド、Jythonスタイルのデプロイメント構造を追加する予定です。プリコンパイルされたJyOpenGLライブラリを含むJython準拠のjarファイルを作成するビルドスクリプト。
+
+JythonでJyOpenGLを使用するには、十分に完全なctypes実装が必要です。現在、Jythonの組み込みJFFIベースのctypes実装では、この目的では十分ではありません。
+
+現時点で有効な方法は、JyNI（www.jyni.org）をネイティブのctypeで使用することです。 JyNIは他のPOSIXプラットフォームもサポートしていますが、説明された設定はLinux（LMDE2,64ビット）でしかテストされていません。この設定の詳細な設定手順は、近い将来このセクションに追加されます。
+
+以下のオリジナルのPyOpenGL-readmeを探します：
+
+PyOpenGLとPyOpenGL_accelerate
+
+PyOpenGLは通常、標準pipを使用してPyPI経由で配布されます：
+
+$ pip install PyOpenGL PyOpenGL_accelerate
+このリポジトリは、ブランチング/クローニングとsetup.pyの実行によってインストールできます：
+
+$ cd pyopengl
+$ python setup.py develop
+$ cd加速
+$ python setup.py develop
+PyOpenGL_accelerateをコンパイルするには、機能するPython拡張コンパイル環境が必要であることに注意してください。
+
+PyOpenGLを学ぶ
+
+PyOpenGLを初めてお使いの方は、OpenGLContextチュートリアルページから始めたいと思うでしょう。これらのチュートリアルではOpenGLContext（シーングラフエンジン全体、VRML97パーサー、たくさんのデモなどの大きなラッパー）が必要です：
+
+$ pip2.7 install "OpenGLContext-full == 3.1.1
+または（チュートリアルのソースを含む）それを複製するには：
+
+$ bzrブランチlp：openglcontext
+ドキュメントページは、PyOpenGL呼び出しのパラメータとセマンティクスを調べるのに便利です。
+
+テストの実行
+
+PyOpenGLテストスイートを実行するには、PygameとNumpyホイールをPython 2.7,3.4、および3.5とともにあらかじめ作成しておく必要があります。テストスイート用のホイールは、ルートチェックアウトと同じレベルの "wheelhouse"というディレクトリに格納する必要があります。
+
+Ubuntuで車輪を作るには：
+
+$ hgクローンhttps://bitbucket.org/pygame/pygame
+$ apt-get build-dep pygame python-numpy
+$ pip2.7 wheel / pygame numpy
+$ pip3.4 wheel / pygame numpy
+$ pip3.5 wheel / pygame numpy
+あなたがpyopenglをチェックアウトしたのと同じディレクトリでそれを行うと、pyopengl toxスイートが予期しているディレクトリにすべてのホイールが置かれます。
+
+toxを実行するには、明らかにtoxがインストールされている必要があります。次のようになります。
+
+$ tox
+その結果、多くのテストがPythonバージョンの環境のマトリックスで実行されていました。
+
+2.7
+3.5
+3.4
+アクセラレーションモジュールを使用する場合と使用しない場合、および環境にnumpyがインストールされている場合とインストールされていない場合をテストします。
+JyOpenGL JyOpenGL purojekuto wa, Jython-jō de dōsa suru yō ni chōsei sa reta PyOpenGL no fōkudesu. 
+
+
+
+
+JyOpenGL
 ========
 
 The JyOpenGL project is a fork of PyOpenGL containing adjustments that allow it to
