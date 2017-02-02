@@ -1,60 +1,108 @@
 JyOpenGL
 
-JyOpenGLプロジェクトは、Jython上で動作するように調整されたPyOpenGLのフォークです。 JyOpenGLはポートではないことに注意してください。この調整は、この執筆時点のように、CPythonとの互換性には触れていないからです。したがって、JyOpenGLはJythonとCPythonで同時に実行可能です。しかし、CPythonで明示的にテストされていません。 JyOpenGLは別のプロジェクトとして作成されました.JythonとJavaの統合、AWTベースのレンダリングフロントエンド、Jythonスタイルのデプロイメント構造を追加する予定です。プリコンパイルされたJyOpenGLライブラリを含むJython準拠のjarファイルを作成するビルドスクリプト。
 
-JythonでJyOpenGLを使用するには、十分に完全なctypes実装が必要です。現在、Jythonの組み込みJFFIベースのctypes実装では、この目的では十分ではありません。
 
-現時点で有効な方法は、JyNI（www.jyni.org）をネイティブのctypeで使用することです。 JyNIは他のPOSIXプラットフォームもサポートしていますが、説明された設定はLinux（LMDE2,64ビット）でしかテストされていません。この設定の詳細な設定手順は、近い将来このセクションに追加されます。
+JyOpenGL
+========
+
+JyOpenGLプロジェクトはPyOpenGLのフォークで、
+Jythonで実行します。 JyOpenGLはポートではないことに注意してください。
+この執筆時点では、CPythonの互換性には触れていません。
+したがって、JyOpenGLはJythonとCPythonで同時に実行可能です。しかし、それはありません
+明示的にCPythonでテストされています。
+Still JyOpenGLは別のプロジェクトとして作成されました。
+JythonとJavaの統合機能、AWTベースのレンダリングフロントエンド、
+Jythonスタイルのデプロイメント構造。 Jython準拠のビルドスクリプト
+JyOpenGLライブラリがプリコンパイルされたjarファイル。
+
+JythonでJyOpenGLを使用するには、十分に完全なctypes実装が必要です。
+必須。現在、Jythonに組み込まれているJFFIベースのctypes実装は、
+*この目的には十分ではありません。
+
+現時点で有効な方法は、JyNI（www.jyni.org）をネイティブのctypeで使用することです。
+JyNIは他のPOSIXプラットフォームもサポートしていますが、記載されている設定はテスト済みです
+Linuxで（LMDE2,64ビット）まだ。
+この設定の詳細な設定手順は、このセクションに追加されます
+近い将来に
+
 
 以下のオリジナルのPyOpenGL-readmeを探します：
+----------------------------------------
+
 
 PyOpenGLとPyOpenGL_accelerate
+=================================
 
-PyOpenGLは通常、標準pipを使用してPyPI経由で配布されます：
+PyOpenGLは標準的なpipを使用してPyPI経由で通常配布されます::
 
-$ pip install PyOpenGL PyOpenGL_accelerate
-このリポジトリは、ブランチング/クローニングとsetup.pyの実行によってインストールできます：
+    $ pip install PyOpenGL PyOpenGL_accelerate
 
-$ cd pyopengl
-$ python setup.py develop
-$ cd加速
-$ python setup.py develop
-PyOpenGL_accelerateをコンパイルするには、機能するPython拡張コンパイル環境が必要であることに注意してください。
+このリポジトリは、ブランチング/クローニングと実行によってインストールできます
+setup.py ::
+
+    $ cd pyopengl
+    $ python setup.py develop
+    $ cd加速
+    $ python setup.py develop
+
+PyOpenGL_accelerateをコンパイルするには、
+機能するPython拡張コンパイル環境。
 
 PyOpenGLを学ぶ
+-----------------
 
-PyOpenGLを初めてお使いの方は、OpenGLContextチュートリアルページから始めたいと思うでしょう。これらのチュートリアルではOpenGLContext（シーングラフエンジン全体、VRML97パーサー、たくさんのデモなどの大きなラッパー）が必要です：
+PyOpenGLを初めてお使いの方は、OpenGLContextのチュートリアルページから始めたいと思うでしょう。
+これらのチュートリアルではOpenGLContextが必要です（これは大きなラッパーです
+シーングラフエンジン、VRML97パーサ、多くのデモなど）をインストールするには::
 
-$ pip2.7 install "OpenGLContext-full == 3.1.1
-または（チュートリアルのソースを含む）それを複製するには：
+    $ pip2.7 install "OpenGLContext-full == 3.1.1
 
-$ bzrブランチlp：openglcontext
-ドキュメントページは、PyOpenGL呼び出しのパラメータとセマンティクスを調べるのに便利です。
+または（チュートリアルのソースを含む）それをクローンすることができます::
+
+    $ bzrブランチlp：openglcontext
+    
+`ドキュメンテーションページ`は、以下のようなパラメータと意味を調べるのに便利です。
+PyOpenGLが呼び出します。
+
+.. _`tutorial page`：http://pyopengl.sourceforge.net/context/tutorials/index.html
+.. _`documentation pages`：http://pyopengl.sourceforge.net/documentation/
+
 
 テストの実行
+--------------
 
-PyOpenGLテストスイートを実行するには、PygameとNumpyホイールをPython 2.7,3.4、および3.5とともにあらかじめ作成しておく必要があります。テストスイート用のホイールは、ルートチェックアウトと同じレベルの "wheelhouse"というディレクトリに格納する必要があります。
+PyOpenGLテストスイートはPygameを事前にビルドしておき、
+ナンシーホイール、Python 2.7、3.4、3.5。ザ
+テストスイート用のホイールは、ディレクトリに格納する必要があります
+ルートチェックアウトと同じレベルの「ホイールハウス」と呼ばれています。
 
-Ubuntuで車輪を作るには：
+Ubuntuでホイールを構築する::
 
-$ hgクローンhttps://bitbucket.org/pygame/pygame
-$ apt-get build-dep pygame python-numpy
-$ pip2.7 wheel / pygame numpy
-$ pip3.4 wheel / pygame numpy
-$ pip3.5 wheel / pygame numpy
-あなたがpyopenglをチェックアウトしたのと同じディレクトリでそれを行うと、pyopengl toxスイートが予期しているディレクトリにすべてのホイールが置かれます。
+    $ hgクローンhttps://bitbucket.org/pygame/pygame
+    $ apt-get build-dep pygame python-numpy
+    $ pip2.7 wheel / pygame numpy
+    $ pip3.4 wheel / pygame numpy
+    $ pip3.5 wheel / pygame numpy
 
-toxを実行するには、明らかにtoxがインストールされている必要があります。次のようになります。
+pyopenglをチェックアウトしたのと同じディレクトリ
+ディレクトリにあなたのすべての車輪がありますpyopengl
+toxスイートが期待しています。
 
-$ tox
-その結果、多くのテストがPythonバージョンの環境のマトリックスで実行されていました。
+あなたは明らかにtoxを実行するために `tox`がインストールされている必要があります。
+このような：：
 
-2.7
-3.5
-3.4
-アクセラレーションモジュールを使用する場合と使用しない場合、および環境にnumpyがインストールされている場合とインストールされていない場合をテストします。
-JyOpenGL JyOpenGL purojekuto wa, Jython-jō de dōsa suru yō ni chōsei sa reta PyOpenGL no fōkudesu. 
+    $ tox
 
+その結果、多数のテストが環境のマトリックスで実行されているため、
+Pythonのバージョン：
+
+    * 2.7
+    * 3.5
+    * 3.4
+
+アクセラレーションモジュールの有無にかかわらずテストを行い、
+環境にnumpyをインストールしないでください。
+JyOpenGL ========
 
 
 
